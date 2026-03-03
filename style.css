@@ -1,387 +1,365 @@
 :root {
-  --bg-gradient-start: #0a0f1e;
-  --bg-gradient-end: #171128;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --text-primary: #ffffff;
-  --text-secondary: #a3aed0;
-  --accent-color: #00d2ff;
-  --accent-glow: #3a7bd5;
-  --success-color: #00ff88;
+    --bg-gradient-start: #0a0f1e;
+    --bg-gradient-end: #171128;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #a3aed0;
+    --accent-color: #00d2ff;
+    --accent-glow: #3a7bd5;
+    --success-color: #00ff88;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
-  background: linear-gradient(-45deg, #0a0f1e, #171128, #112a46, #00122e);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  color: var(--text-primary);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x: hidden;
-  position: relative;
+    background: linear-gradient(-45deg, #0a0f1e, #171128, #112a46, #00122e);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
 }
 
 @keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
 
-  50% {
-    background-position: 100% 50%;
-  }
+    50% {
+        background-position: 100% 50%;
+    }
 
-  100% {
-    background-position: 0% 50%;
-  }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .container {
-  width: 100%;
-  max-width: 1200px;
-  padding: 2rem 1rem;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem 1rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
 }
 
 header {
-  text-align: center;
-  animation: fadeInDown 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    text-align: center;
+    animation: fadeInDown 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 header h1 {
-  font-size: clamp(2.5rem, 8vw, 4rem);
-  font-weight: 900;
-  letter-spacing: -2px;
-  background: linear-gradient(
-    to right,
-    var(--accent-color),
-    var(--success-color)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 40px rgba(0, 210, 255, 0.3);
-  margin-bottom: 0.5rem;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -2px;
+    background: linear-gradient(to right, var(--accent-color), var(--success-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 40px rgba(0, 210, 255, 0.3);
+    margin-bottom: 0.5rem;
 }
 
 header p {
-  font-size: clamp(1rem, 4vw, 1.2rem);
-  color: var(--text-secondary);
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    color: var(--text-secondary);
 }
 
 main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
 }
 
 /* Floating huge countdown container replacing the card */
 .countdown-container {
-  padding: 2rem 1rem;
-  width: 100%;
-  text-align: center;
-  animation: scaleIn 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+    padding: 2rem 1rem;
+    width: 100%;
+    text-align: center;
+    animation: scaleIn 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 /* Subtle glow behind time text instead of card */
 .countdown-container::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80vw;
-  height: 80vw;
-  max-width: 600px;
-  max-height: 600px;
-  background: radial-gradient(
-    circle,
-    rgba(58, 123, 213, 0.15) 0%,
-    transparent 60%
-  );
-  animation: rotate 20s linear infinite;
-  z-index: -1;
-  transform: translate(-50%, -50%);
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80vw;
+    height: 80vw;
+    max-width: 600px;
+    max-height: 600px;
+    background: radial-gradient(circle, rgba(58, 123, 213, 0.15) 0%, transparent 60%);
+    animation: rotate 20s linear infinite;
+    z-index: -1;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes rotate {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
 
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 h2#meal-name {
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
-  font-weight: 900;
-  color: var(--accent-color);
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 900;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
 }
 
 .time-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .time-display {
-  font-size: clamp(4rem, 16vw, 10rem);
-  font-weight: 900;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-  letter-spacing: -2px;
+    font-size: clamp(4rem, 16vw, 10rem);
+    font-weight: 900;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    letter-spacing: -2px;
 }
 
 .milliseconds {
-  font-size: clamp(1.5rem, 6vw, 3rem);
-  color: var(--accent-color);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  opacity: 0.8;
+    font-size: clamp(1.5rem, 6vw, 3rem);
+    color: var(--accent-color);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    opacity: 0.8;
 }
 
 .auto-mode-info {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-  transition: opacity 0.3s;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    transition: opacity 0.3s;
 }
 
 .auto-mode-info.hidden {
-  opacity: 0;
-  pointer-events: none;
-  user-select: none;
-  height: 0;
-  margin: 0;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    height: 0;
+    margin: 0;
 }
 
 #reset-auto {
-  color: var(--accent-color);
-  cursor: pointer;
-  text-decoration: underline;
-  font-weight: bold;
+    color: var(--accent-color);
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 #reset-auto:hover {
-  color: var(--success-color);
+    color: var(--success-color);
 }
 
 .cheer-button {
-  background: linear-gradient(135deg, var(--accent-glow), var(--accent-color));
-  color: #fff;
-  border: none;
-  padding: clamp(1rem, 3vw, 1.2rem) clamp(2rem, 6vw, 3rem);
-  font-size: clamp(1rem, 4vw, 1.2rem);
-  font-weight: 700;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 10px 20px rgba(58, 123, 213, 0.3);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.cheer-button.celebrate-button {
-  background: linear-gradient(135deg, var(--accent-glow), var(--accent-color));
-  box-shadow: 0 10px 20px rgba(58, 123, 213, 0.3);
-}
-
-.cheer-button.cry-button {
-  background: linear-gradient(135deg, #5a7fb5, #3a7dd8);
-  box-shadow: 0 10px 20px rgba(90, 127, 181, 0.3);
+    background: linear-gradient(135deg, var(--accent-glow), var(--accent-color));
+    color: #fff;
+    border: none;
+    padding: clamp(1rem, 3vw, 1.2rem) clamp(2rem, 6vw, 3rem);
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(58, 123, 213, 0.3);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .cheer-button:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 15px 30px rgba(58, 123, 213, 0.5);
-}
-
-.cheer-button.cry-button:hover {
-  box-shadow: 0 15px 30px rgba(90, 127, 181, 0.5);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(58, 123, 213, 0.5);
 }
 
 .cheer-button:active {
-  transform: translateY(2px) scale(0.95);
+    transform: translateY(2px) scale(0.95);
 }
 
 .schedule {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s backwards;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s backwards;
 }
 
 .schedule-item {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  padding: 1.2rem 1.5rem;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  flex: 1;
-  min-width: 140px;
-  max-width: 250px;
-  cursor: pointer;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 1.2rem 1.5rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 140px;
+    max-width: 250px;
+    cursor: pointer;
 }
 
 /* Base states */
 .schedule-item.active {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--accent-color);
-  box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
 }
 
 /* User explicitly selected */
 .schedule-item.selected-override {
-  background: rgba(0, 210, 255, 0.15);
-  border-color: var(--success-color);
-  box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
-  transform: translateY(-5px);
+    background: rgba(0, 210, 255, 0.15);
+    border-color: var(--success-color);
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+    transform: translateY(-5px);
 }
 
 .schedule-item:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .schedule-item .meal {
-  font-weight: 700;
-  font-size: clamp(1rem, 3.5vw, 1.2rem);
-  color: var(--text-secondary);
-  text-align: center;
+    font-weight: 700;
+    font-size: clamp(1rem, 3.5vw, 1.2rem);
+    color: var(--text-secondary);
+    text-align: center;
 }
 
 .schedule-item.active .meal,
 .schedule-item.selected-override .meal {
-  color: #fff;
+    color: #fff;
 }
 
 .schedule-item .time {
-  font-family: monospace;
-  font-size: clamp(1.2rem, 4.5vw, 1.5rem);
-  color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.3);
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-  font-weight: 700;
+    font-family: monospace;
+    font-size: clamp(1.2rem, 4.5vw, 1.5rem);
+    color: var(--text-primary);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-weight: 700;
 }
 
 footer {
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-top: 2rem;
-  animation: fadeIn 2s ease 1s backwards;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    animation: fadeIn 2s ease 1s backwards;
 }
 
 /* Animations */
 @keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
 
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
+    from {
+        opacity: 0;
+    }
 
-  to {
-    opacity: 1;
-  }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Confetti canvas */
 #confetti {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 100;
 }
 
 /* Ensure mobile looks spectacular */
 @media (max-width: 600px) {
-  .schedule {
-    flex-direction: row;
-    gap: 0.8rem;
-  }
+    .schedule {
+        flex-direction: row;
+        gap: 0.8rem;
+    }
 
-  .schedule-item {
-    padding: 1rem 0.5rem;
-    min-width: unset;
-    width: 30%;
-    border-radius: 12px;
-  }
+    .schedule-item {
+        padding: 1rem 0.5rem;
+        min-width: unset;
+        width: 30%;
+        border-radius: 12px;
+    }
 
-  .schedule-item .time {
-    font-size: 1.1rem;
-    padding: 0.2rem 0.4rem;
-  }
+    .schedule-item .time {
+        font-size: 1.1rem;
+        padding: 0.2rem 0.4rem;
+    }
 }
