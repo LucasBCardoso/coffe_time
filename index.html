@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHEGOU A HORA</title>
+    <meta name="description" content="Acompanhe o tempo exato para o almoço e cafés do dia!">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <header>
+            <h1>CHEGOU A HORA</h1>
+            <p>Selecione um evento abaixo ou aguarde a próxima pausa</p>
+        </header>
+
+        <main>
+            <div class="countdown-container">
+                <h2 id="meal-name">Carregando...</h2>
+                <div class="time-wrapper">
+                    <div class="time-display" id="time-left">00:00:00</div>
+                    <div class="milliseconds" id="ms-left">000</div>
+                </div>
+
+                <div id="auto-mode-info" class="auto-mode-info hidden">
+                    Mostrando tempo selecionado. <span id="reset-auto">Voltar ao automático</span>
+                </div>
+
+                <button id="cheer-btn" class="cheer-button">🎉 Comemorar!</button>
+            </div>
+
+            <div class="schedule">
+                <div class="schedule-item" id="schedule-coffem" data-id="schedule-coffem">
+                    <span class="meal">☕ Manhã</span>
+                    <span class="time">09:30</span>
+                </div>
+                <div class="schedule-item" id="schedule-lunch" data-id="schedule-lunch">
+                    <span class="meal">🍽️ Almoço</span>
+                    <span class="time">12:00</span>
+                </div>
+                <div class="schedule-item" id="schedule-coffeA" data-id="schedule-coffeA">
+                    <span class="meal">☕ Tarde</span>
+                    <span class="time">15:00</span>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Sincronizado em tempo real (Horário de Brasília).</p>
+        </footer>
+    </div>
+
+    <!-- Canvas for confetti -->
+    <canvas id="confetti"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
