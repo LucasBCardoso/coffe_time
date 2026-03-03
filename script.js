@@ -1,7 +1,8 @@
 const meals = [
-    { id: 'schedule-coffem', name: 'Contagem para CAFÉ DA MANHÃ', hour: 9, minute: 30 },
-    { id: 'schedule-lunch', name: 'Contagem para ALMOÇO', hour: 12, minute: 0 },
-    { id: 'schedule-coffeA', name: 'Contagem para CAFÉ DA TARDE', hour: 15, minute: 0 }
+    { id: 'schedule-coffem', name: 'Contagem para CAFÉ DA MANHÃ', hour: 9, minute: 30, type: 'cheer' },
+    { id: 'schedule-lunch', name: 'Contagem para ALMOÇO', hour: 12, minute: 0, type: 'cheer' },
+    { id: 'schedule-coffeA', name: 'Contagem para CAFÉ DA TARDE', hour: 15, minute: 0, type: 'cheer' },
+    { id: 'schedule-home', name: 'Contagem para IR PRA CASA', hour: 17, minute: 18, type: 'sad' }
 ];
 
 const mealNameEl = document.getElementById('meal-name');
@@ -9,6 +10,9 @@ const timeLeftEl = document.getElementById('time-left');
 const msLeftEl = document.getElementById('ms-left');
 const autoModeInfoEl = document.getElementById('auto-mode-info');
 const resetAutoBtn = document.getElementById('reset-auto');
+
+const cheerBtn = document.getElementById('cheer-btn');
+const sadBtn = document.getElementById('sad-btn');
 
 let currentActiveMealId = null;
 let lastCheeredDateMs = null;
@@ -38,6 +42,46 @@ function triggerConfetti() {
             requestAnimationFrame(frame);
         }
     }());
+}
+
+function triggerSadFaces() {
+    const duration = 4000;
+    const end = Date.now() + duration;
+    const emojis = ['😢', '😭', '🥺', '💧'];
+
+    const interval = setInterval(() => {
+        if (Date.now() > end) {
+            return clearInterval(interval);
+        }
+
+        // Criamos as gotas manualmente de forma reta e sem rotações
+        for (let i = 0; i < 3; i++) {
+            const tear = document.createElement('div');
+            tear.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            tear.style.position = 'fixed';
+            tear.style.left = Math.random() * 100 + 'vw';
+            tear.style.top = '-10vh'; // Fora de tela no topo
+            tear.style.fontSize = (Math.random() * 4 + 4) + 'rem'; // Letras gigantes
+            tear.style.zIndex = '9999';
+            tear.style.opacity = '1'; // Sem decesso de transparência
+            tear.style.pointerEvents = 'none';
+            tear.style.transition = 'transform 2.5s linear'; // Descida contínua sem aceleração
+
+            document.body.appendChild(tear);
+
+            // Inicia animação garantindo 60fps constantes até a borda inferior
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    tear.style.transform = `translateY(120vh)`;
+                });
+            });
+
+            // Elimina div do HTML após passar pela tela
+            setTimeout(() => {
+                tear.remove();
+            }, 3000);
+        }
+    }, 50);
 }
 
 // Configura o clique nos cartões
@@ -83,7 +127,7 @@ function updateTimer() {
     let targetTimeMs = null;
 
     if (selectedMealId) {
-        // Usuário escolheu manualmente ver o tempo até X refeição
+        // Usuário escolheu manualmente ver o tempo até X evento
         targetMeal = meals.find(m => m.id === selectedMealId);
         const hh = String(targetMeal.hour).padStart(2, '0');
         const mm = String(targetMeal.minute).padStart(2, '0');
@@ -91,7 +135,7 @@ function updateTimer() {
         let candidateTimeMs = new Date(`${brtDateString}T${hh}:${mm}:00-03:00`).getTime();
 
         // Se a refeição escolhida já passou e não está na "margem do minuto comemorativo",
-        // joga automaticamente o alvo para a de amanhã!
+        // joga automaticamente o alvo para o de amanhã!
         if (candidateTimeMs + 60000 <= nowMs) {
             candidateTimeMs = new Date(`${tomorrowDateString}T${hh}:${mm}:00-03:00`).getTime();
         }
@@ -112,7 +156,7 @@ function updateTimer() {
             }
         }
 
-        // Se todas as refeições do dia já passaram, pega o café da manhã de amanhã
+        // Se todos os eventos do dia já passaram, pega o do começo de amanhã
         if (!targetMeal) {
             targetMeal = meals[0];
             const hh = String(targetMeal.hour).padStart(2, '0');
@@ -127,7 +171,11 @@ function updateTimer() {
     if (diffMs <= 0) {
         diffMs = 0; // Trava o mostrador em 0
         if (lastCheeredDateMs !== targetTimeMs) {
-            triggerConfetti();
+            if (targetMeal.type === 'sad') {
+                triggerSadFaces();
+            } else {
+                triggerConfetti();
+            }
             lastCheeredDateMs = targetTimeMs;
         }
     }
@@ -148,6 +196,15 @@ function updateTimer() {
     }
     timeLeftEl.textContent = `${strH}:${strM}:${strS}`;
     msLeftEl.textContent = `.${strMs}`;
+
+    // Alterna os botões principal de comemorar / chorar baseado no "tipo" de evento
+    if (targetMeal.type === 'sad') {
+        cheerBtn.classList.add('hidden-btn');
+        sadBtn.classList.remove('hidden-btn');
+    } else {
+        sadBtn.classList.add('hidden-btn');
+        cheerBtn.classList.remove('hidden-btn');
+    }
 
     // Adiciona "active" a refeição atual se estiver no modo automático
     if (!selectedMealId) {
@@ -176,5 +233,6 @@ function updateTimer() {
 // Inicializa
 requestAnimationFrame(updateTimer);
 
-// Botão comemorativo ativado manualmente
-document.getElementById('cheer-btn').addEventListener('click', triggerConfetti);
+// Botões interativos manuais
+cheerBtn.addEventListener('click', triggerConfetti);
+sadBtn.addEventListener('click', triggerSadFaces);
